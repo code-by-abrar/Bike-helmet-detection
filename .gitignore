@@ -1,0 +1,18 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore image dataset 
+data/images/*
+data/videos/*
+
+# Ignore virtual environment folders
+venv/
+env/
+
+# Ignore system files (Windows/macOS)
+.DS_Store
+Thumbs.db
+
+# Ignore YOLOv8 auto-generated folders
+runs/
