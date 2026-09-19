@@ -1,48 +1,89 @@
-# 🏍️ Bike Helmet Detection using YOLOv8
+# 🏍️ AI Motorcyclist Helmet Detection System (YOLOv8)
 
-This project focuses on detecting whether bike riders and pillion passengers are wearing helmets or not, using a custom-trained **YOLOv8 model**. The system can accurately identify multiple scenarios such as both wearing helmets, only the driver wearing, or neither wearing.
+<div align="center">
 
----
+[![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-blue.svg?style=for-the-badge&logo=yolo)](https://github.com/ultralytics/ultralytics)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8.svg?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)](LICENSE)
 
-## 📘 Project Overview
+**Real-time computer vision system detecting helmet compliance for motorbike riders and pillion passengers from traffic surveillance video feeds.**
 
-Road safety is a critical issue, especially for motorbike riders. This project leverages **computer vision and deep learning (YOLOv8)** to automatically detect:
-- Riders without helmets
-- Riders with helmets
-- Passenger helmet compliance
-
-This model can be integrated with **traffic monitoring systems, CCTV surveillance**, or **law enforcement automation** for helmet rule enforcement.
+</div>
 
 ---
 
-## 🎯 Objectives
+## 📌 Project Overview
 
-- Detect motorbike riders in real-time.
-- Identify whether the driver and passenger are wearing helmets.
-- Support automatic video or image-based safety analysis.
-- Provide accurate detections in various lighting and environmental conditions.
+Motorcycle road safety enforcement is a critical public safety challenge. This project implements a custom-trained **YOLOv8** deep learning model capable of accurately detecting:
+- 🟢 Riders wearing helmets
+- 🔴 Riders without helmets
+- 👥 Multi-passenger (pillion) helmet compliance scenarios
 
----
-
-## 🧠 Classes Description
-
-| Class Name | Description |
-|-------------|-------------|
-| **DHelmet** | Driver with Helmet |
-| **DHelmetP1Helmet** | Driver and Passenger both wearing Helmets |
-| **DHelmetP1NoHelmet** | Driver wearing Helmet, Passenger without Helmet |
-| **DNoHelmet** | Driver without Helmet |
-| **DNoHelmetP1Helmet** | Driver without Helmet, Passenger with Helmet |
-| **DNoHelmetP1NoHelmet** | Driver and Passenger both without Helmets |
+Designed for direct integration with **traffic surveillance cameras, smart city CCTV systems, and law enforcement automated ticketing pipelines**.
 
 ---
 
-## 🧩 Model Details
+## 🎯 Model Capabilities
 
-- **Model Type:** YOLOv8 (You Only Look Once - Version 8)
-- **Framework:** Ultralytics YOLOv8
-- **Input Size:** 640×640
-- **Dataset Format:** YOLO format
-- **Training Epochs:** Customizable
-- **Hardware:** GPU recommended (e.g., NVIDIA RTX)
+| Class | Description | Compliance Action |
+| :--- | :--- | :--- |
+| **With Helmet** | Rider or passenger wearing an approved helmet | Verified ✅ |
+| **Without Helmet** | Rider or passenger with head exposed | Violation Alert 🚨 |
+| **Rider / Motorcycle** | Vehicle and occupant localization | Tracked 🏍️ |
 
+---
+
+## ⚡ Features
+
+- **⚡ Real-Time High-FPS Processing**: Optimized inference for live RTSP traffic camera streams.
+- **🎯 Multi-Class Localization**: Simultaneously detects riders, bikes, and headgear status in dense traffic.
+- **🎥 Video Output Generation**: Automatically annotates violation bounding boxes and renders processed video.
+- **📦 Pre-Trained Weights Included**: Ready-to-run custom weights saved in `model/best.pt`.
+
+---
+
+## 🛠️ Installation & Setup
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/<your-username>/bike-helmet-detection.git
+   cd bike-helmet-detection
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run Detection on Video**:
+   ```bash
+   python src/detect.py
+   ```
+   *Or specify custom input:*
+   ```bash
+   yolo task=detect mode=predict model=model/best.pt source=output_video.mp4 show=True
+   ```
+
+---
+
+## 📂 Repository Structure
+
+```text
+bike-helmet-detection/
+├── model/
+│   └── best.pt               # Trained YOLOv8 model weights
+├── results/                  # Validation metrics, confusion matrices, and charts
+├── src/
+│   └── detect.py             # Inference pipeline script
+├── output_video.mp4          # Sample input/output demonstration video
+├── requirements.txt          # Python dependencies
+├── LICENSE                   # Apache 2.0 License
+└── README.md
+```
+
+---
+
+## 📄 License
+
+Licensed under the **Apache License, Version 2.0**. See [`LICENSE`](LICENSE) for details.
